@@ -26,4 +26,20 @@ class Album {
   }
 }
 
+/**
+ * Filters albums by an arbitrary number of filter objects.
+ * @param {Array<Album>} albums album collection to filter
+ * @param {Array<{
+ * predicate: (album: Album, data: any) => boolean,
+ * args: any
+ * }>} filterObjects collection of filter predicates and accompanying arguments
+ */
+export const filterAlbums = (albums, filterObjects) => albums.filter((album) => {
+  const albumResult = filterObjects.reduce((accumulator, filterObject) => {
+    const predicatesResult = filterObject.predicate(album, filterObject.args) && accumulator;
+    return predicatesResult;
+  }, true);
+  return albumResult;
+});
+
 export default Album;

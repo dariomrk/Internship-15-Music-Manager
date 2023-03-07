@@ -29,15 +29,27 @@ export class Album {
 /**
  * Filters albums by an arbitrary number of filter objects.
  * @param {Array<Album>} albums album collection to filter
- * @param {Array<{
- * predicate: (album: Album, data: any) => boolean,
- * args: any
- * }>} filterObjects collection of filter predicates and accompanying arguments
+ * @param {Array<predicate: (album: Album) => boolean>} filters collection of filter predicates
+ * @returns {Array<Album>} filtered albums
  */
-export const filterAlbums = (albums, filterObjects) => albums.filter((album) => {
-  const albumResult = filterObjects.reduce((accumulator, filterObject) => {
-    const predicatesResult = filterObject.predicate(album, filterObject.args) && accumulator;
+export const filterAlbums = (albums, filters) => albums.filter((album) => {
+  const albumResult = filters.reduce((accumulator, filter) => {
+    const predicatesResult = filter(album) && accumulator;
     return predicatesResult;
   }, true);
   return albumResult;
 });
+
+/**
+ * Returns a filter ready to be used within the `filterAlbums` function.
+ * @param {string} name filters by the provided name
+ * @returns {(album: Album) => boolean} filter
+ */
+export const getFilterByName = (name) => (album) => album.name.includes(name);
+
+/**
+ * Returns a filter ready to be used within the `filterAlbums` function.
+ * @param {string} genre filters by the provided genre
+ * @returns {(album: Album) => boolean} filter
+ */
+export const getFilterByGenre = (genre) => (album) => album.genre.includes(genre);

@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 /**
  * Defines an album.
  */
-class Album {
+export class Album {
   /**
    * Creates a new Album object.
    * @param {{
@@ -41,5 +41,3 @@ export const filterAlbums = (albums, filterObjects) => albums.filter((album) => 
   }, true);
   return albumResult;
 });
-
-export default Album;

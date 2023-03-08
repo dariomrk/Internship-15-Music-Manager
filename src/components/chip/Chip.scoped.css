@@ -1,0 +1,18 @@
+div {
+  width: fit-content;
+  height: fit-content;
+  border: 0;
+  border-radius: 10em;
+  padding: 8px 14px;
+  font-weight: 400;
+  transition: all 200ms ease;
+  box-shadow: var(--box-shadow-1);
+  color: white;
+  background-color: var(--accent);
+  filter: saturate(0.4) brightness(0.8);
+  cursor: pointer;
+}
+
+.active {
+  filter: saturate(1);
+}

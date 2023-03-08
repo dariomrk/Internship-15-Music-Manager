@@ -15,7 +15,7 @@ button:hover {
   filter: grayscale(0) saturate(1.2);
 }
 
-button:focus {
+button:active {
   box-shadow: none;
 }
 

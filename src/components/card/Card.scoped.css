@@ -47,6 +47,5 @@ svg {
 
 .remove {
   align-self: flex-end;
-  margin-right: 8px;
-  margin-bottom: 8px;
+  margin: 12px;
 }

@@ -22,7 +22,7 @@ export class Album {
     this.author = data.author;
     this.genre = data.genre;
     this.yearOfRelease = data.yearOfRelease;
-    this.addedAt = data.addedAt ?? DateTime.now().toISO();
+    this.addedAt = data.addedAt ?? DateTime.utc().toISO();
   }
 }
 

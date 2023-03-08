@@ -9,6 +9,7 @@
   transition: all 200ms ease;
   background-color: whitesmoke;
   box-shadow: var(--box-shadow-2);
+  overflow: auto;
 }
 
 .card:hover {
@@ -20,7 +21,7 @@ svg {
 }
 
 .card__content {
-  margin-left: auto;
+  margin-left: 24px;
   margin-right: auto;
   padding: 24px;
 }

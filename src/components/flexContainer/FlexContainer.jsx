@@ -6,7 +6,8 @@ import './FlexContainer.scoped.css';
  * flexDirection: undefined | string,
  * justifyContent: undefined | string,
  * alignItems: undefined | string,
- * flexWrap: undefined | string}} props
+ * flexWrap: undefined | string,
+ * gap: undefined | string}} props
  * @returns {JSX.Element}
  */
 function FlexContainer({
@@ -15,10 +16,15 @@ function FlexContainer({
   justifyContent,
   alignItems,
   flexWrap,
+  gap,
 }) {
   return (
     <div style={{
-      flexDirection, justifyContent, alignItems, flexWrap,
+      flexDirection,
+      justifyContent,
+      alignItems,
+      flexWrap,
+      gap,
     }}
     >
       {children}

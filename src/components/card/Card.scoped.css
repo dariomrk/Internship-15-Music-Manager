@@ -21,9 +21,13 @@ svg {
 }
 
 .card__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   margin-left: 24px;
-  margin-right: auto;
-  padding: 24px;
+  padding-left: 24px;
+  padding: 24px 0;
 }
 
 .year-of-release {
@@ -39,4 +43,10 @@ svg {
   font-size: 32px;
   font-weight: 800;
   margin-bottom: 24px;
+}
+
+.remove {
+  align-self: flex-end;
+  margin-right: 8px;
+  margin-bottom: 8px;
 }

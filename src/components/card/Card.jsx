@@ -3,6 +3,7 @@ import './Card.scoped.css';
 import { ReactComponent as AlbumCoverPlaceholder } from '../../assets/album-cover-placeholder.svg';
 import FlexContainer from '../flexContainer/FlexContainer';
 import Chip from '../chip/Chip';
+import Button from '../button/Button';
 
 /**
  * @param {{album: Album}} props
@@ -19,6 +20,9 @@ function Card({ album }) {
         <FlexContainer>
           {album.genres.map((genre) => <Chip text={genre} />)}
         </FlexContainer>
+      </div>
+      <div className="remove">
+        <Button text="Remove" type="danger" callback={() => {}} />
       </div>
     </div>
   );

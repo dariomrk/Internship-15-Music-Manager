@@ -1,7 +1,5 @@
-// Taken from https://github.com/dariusk/corpora
 {
-	"genres":
-	[
+	"genres": [
 		"2-step",
 		"4-beat",
 		"Acid breaks",
@@ -237,7 +235,7 @@
 		"Neofolk",
 		"Neurofunk",
 		"New Beat",
-    	"New jack swing",
+		"New jack swing",
 		"New prog",
 		"New rave",
 		"New wave",
@@ -369,7 +367,7 @@
 		"Witch House/Drag",
 		"World fusion",
 		"Worldbeat",
-    	"Yacht rock",
+		"Yacht rock",
 		"Yorkshire Bleeps and Bass"
 	]
 }

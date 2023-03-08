@@ -1,0 +1,28 @@
+button {
+  width: fit-content;
+  height: fit-content;
+  border: 0;
+  padding: 8px;
+  font-weight: 600;
+  transition: all 200ms ease;
+  box-shadow: var(--box-shadow-2);
+  filter: grayscale(0.1);
+  color: white;
+  background-color: var(--accent);
+}
+
+button:hover {
+  filter: grayscale(0) saturate(1.2);
+}
+
+button:focus {
+  box-shadow: none;
+}
+
+.danger {
+  background-color: var(--accent-danger);
+}
+
+.success {
+  background-color: var(--accent-success);
+}

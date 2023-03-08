@@ -45,11 +45,11 @@ export const filterAlbums = (albums, filters) => albums.filter((album) => {
  * @param {string} name filters by the provided name
  * @returns {(album: Album) => boolean} filter
  */
-export const getFilterByName = (name) => (album) => album.name.includes(name);
+export const getFilterByName = (name) => (album) => (name !== '' ? album.name.includes(name) : true);
 
 /**
  * Returns a filter ready to be used within the `filterAlbums` function.
  * @param {string} genre filters by the provided genre
  * @returns {(album: Album) => boolean} filter
  */
-export const getFilterByGenre = (genre) => (album) => album.genre.includes(genre);
+export const getFilterByGenre = (genre) => (album) => (genre !== '' ? album.genre.includes(genre) : true);

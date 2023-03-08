@@ -58,3 +58,12 @@ export const getFilterByGenre = (searchGenre) => (album) => {
     .includes(searchGenre.toLowerCase()));
   return result;
 };
+
+/**
+ * Sorts albums by release year and name.
+ * @param {Array<Album>} albums collection of albums
+ * @returns {Array<Album>} sorted collection of albums
+ */
+export const albumSort = (albums) => [...albums]
+  .sort((a1, a2) => a1.name.localeCompare(a2.name))
+  .sort((a1, a2) => a1.yearOfRelease - a2.yearOfRelease);

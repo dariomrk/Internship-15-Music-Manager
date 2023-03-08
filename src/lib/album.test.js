@@ -1,6 +1,6 @@
 import { test, expect } from 'vitest';
 import {
-  Album, filterAlbums, getFilterByGenre, getFilterByName,
+  Album, albumSort, filterAlbums, getFilterByGenre, getFilterByName,
 } from './album';
 
 const albums = [
@@ -22,6 +22,12 @@ const albums = [
     genres: ['Thrash metal'],
     yearOfRelease: 1984,
   }),
+  new Album({
+    name: 'Dirt',
+    author: 'Alice In Chains',
+    genres: ['Grunge', 'Alternative rock'],
+    yearOfRelease: 1992,
+  }),
 ];
 
 test('filtering by name', () => {
@@ -30,7 +36,7 @@ test('filtering by name', () => {
     .toContain(albums[0], albums[2]);
   expect(result)
     .not
-    .toContain(albums[1]);
+    .toContain(albums[1], albums[3]);
 });
 
 test('filtering by genre', () => {
@@ -39,7 +45,7 @@ test('filtering by genre', () => {
     .toContain(albums[0], albums[2]);
   expect(result)
     .not
-    .toContain(albums[1]);
+    .toContain(albums[1], albums[3]);
 });
 
 test('filter by name and genre', () => {
@@ -48,5 +54,15 @@ test('filter by name and genre', () => {
     .toContain(albums[2]);
   expect(result)
     .not
-    .toContain(albums[0], albums[1]);
+    .toContain(albums[0], albums[1], albums[3]);
+});
+
+test('album sort', () => {
+  const result = albumSort(albums);
+  expect(result[0])
+    .toEqual(albums[2]);
+  expect(result[1])
+    .toEqual(albums[3]);
+  expect(result[2])
+    .toEqual(albums[0]);
 });

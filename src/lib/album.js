@@ -11,7 +11,7 @@ export class Album {
    * uuid: string | undefined,
    * name: string,
    * author: string,
-   * genre: string,
+   * genres: Array<string>,
    * yearOfRelease: number,
    * addedAt: string | undefined
    * }} data album data
@@ -20,7 +20,7 @@ export class Album {
     this.uuid = data.uuid ?? v4();
     this.name = data.name;
     this.author = data.author;
-    this.genre = data.genre;
+    this.genres = data.genres;
     this.yearOfRelease = data.yearOfRelease;
     this.addedAt = data.addedAt ?? DateTime.utc().toISO();
   }
@@ -49,7 +49,12 @@ export const getFilterByName = (name) => (album) => (name !== '' ? album.name.to
 
 /**
  * Returns a filter ready to be used within the `filterAlbums` function.
- * @param {string} genre filters by the provided genre
+ * @param {string} searchGenre filters by the provided genre
  * @returns {(album: Album) => boolean} filter
  */
-export const getFilterByGenre = (genre) => (album) => (genre !== '' ? album.genre.toLowerCase().includes(genre.toLowerCase()) : true);
+export const getFilterByGenre = (searchGenre) => (album) => {
+  const result = album.genres.some((albumGenre) => albumGenre
+    .toLowerCase()
+    .includes(searchGenre.toLowerCase()));
+  return result;
+};

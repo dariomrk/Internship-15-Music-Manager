@@ -7,19 +7,19 @@ const albums = [
   new Album({
     name: 'Rage Against the Machine',
     author: 'Rage Against the Machine',
-    genre: 'Rap metal',
+    genres: ['Rap metal', 'Alternative metal', 'Funk metal'],
     yearOfRelease: 1992,
   }),
   new Album({
     name: 'Californication',
     author: 'Red Hot Chili Peppers',
-    genre: 'Alternative rock',
+    genres: ['Alternative rock', 'Funk rock'],
     yearOfRelease: 1998,
   }),
   new Album({
     name: 'Ride the Lightning',
     author: 'Metallica',
-    genre: 'Thrash metal',
+    genres: ['Thrash metal'],
     yearOfRelease: 1984,
   }),
 ];
@@ -42,8 +42,8 @@ test('filtering by genre', () => {
     .toContain(albums[1]);
 });
 
-test('filtering by name and genre', () => {
-  const result = filterAlbums(albums, [getFilterByName('light')], [getFilterByGenre('metal')]);
+test('filter by name and genre', () => {
+  const result = filterAlbums(albums, [getFilterByName('light'), getFilterByGenre('Thrash')]);
   expect(result)
     .toContain(albums[2]);
   expect(result)

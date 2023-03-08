@@ -32,13 +32,13 @@ export class Album {
  * @param {Array<(album: Album) => boolean>} filters collection of filter predicates
  * @returns {Array<Album>} filtered albums
  */
-export const filterAlbums = (albums, filters) => albums.filter((album) => {
+export const filterAlbums = (albums, filters) => (!filters ? albums : albums.filter((album) => {
   const albumResult = filters.reduce((accumulator, filter) => {
     const predicatesResult = filter(album) && accumulator;
     return predicatesResult;
   }, true);
   return albumResult;
-});
+}));
 
 /**
  * Returns a filter ready to be used within the `filterAlbums` function.

@@ -13,7 +13,8 @@ export class Album {
    * author: string,
    * genres: Array<string>,
    * yearOfRelease: number,
-   * addedAt: string | undefined
+   * addedAt: string | undefined,
+   * cover: string | undefined
    * }} data album data
    */
   constructor(data) {
@@ -23,6 +24,7 @@ export class Album {
     this.genres = data.genres;
     this.yearOfRelease = data.yearOfRelease;
     this.addedAt = data.addedAt ?? DateTime.utc().toISO();
+    this.cover = data.cover;
   }
 }
 
@@ -67,3 +69,23 @@ export const getFilterByGenre = (searchGenre) => (album) => {
 export const albumSort = (albums) => [...albums]
   .sort((a1, a2) => a1.name.localeCompare(a2.name))
   .sort((a1, a2) => a1.yearOfRelease - a2.yearOfRelease);
+
+/**
+ * Removes an album by uuid from the specified collection.
+ * @param {string} uuid uuid of album to remove
+ * @param {Array<Album>} albums collection of albums to remove from
+ * @returns {Array<Album>}
+ */
+export const removeAlbum = (uuid, albums) => albums.filter((a) => a.uuid !== uuid);
+
+export const setLocalAlbums = (albums) => {
+  localStorage.removeItem('albums');
+  localStorage.setItem('albums', JSON.stringify(albums));
+};
+
+export const getLocalAlbums = () => {
+  const data = JSON.parse(localStorage.getItem('albums'));
+
+  if (!data) { return []; }
+  return data;
+};

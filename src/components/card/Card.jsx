@@ -6,13 +6,16 @@ import Button from '../button/Button';
 import FileInput from '../fileInput/FileInput';
 
 /**
- * @param {{album: Album}} props
+ * @param {{
+ * album: Album,
+ * addCoverCallback: (e: Event, files: Array<File>, album: Album) => void),
+ * removeCallback: (album: Album) => void}} props
  * @returns {JSX.Element} Card component
  */
-function Card({ album }) {
+function Card({ album, addCoverCallback, removeCallback }) {
   return (
     <div className="card">
-      <div className="album-cover-wrapper">
+      <div className="album-cover-wrapper" style={{ backgroundImage: (!album.cover ? '' : `url(${album.cover})`) }}>
         <h2 className="year-of-release">{album.yearOfRelease}</h2>
       </div>
       <div className="card__content">
@@ -26,9 +29,9 @@ function Card({ album }) {
         <FlexContainer flexDirection="column" alignItems="end" gap="4px">
           <FileInput
             text="Add cover"
-            callback={(e, files) => {}}
+            callback={(e, files) => { addCoverCallback(e, files, album); }}
           />
-          <Button text="Remove" type="danger" callback={() => {}} />
+          <Button text="Remove" type="danger" callback={() => { removeCallback(album); }} />
         </FlexContainer>
       </div>
     </div>

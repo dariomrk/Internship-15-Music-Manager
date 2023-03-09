@@ -5,16 +5,31 @@ import FlexContainer from '../flexContainer/FlexContainer';
 import './CardContainer.scoped.css';
 
 /**
- * @param {{albums: Array<Album>, filters: Array<Function>}} props
+ * @param {{
+ * albums: Array<Album>,
+ * filters: Array<Function>,
+ * addCoverCallback: (e: Event, files: Array<File>, album: Album) => void,
+ * removeAlbumCallback: (album: Album) => void}} props
  * @returns {JSX.Element} Card container component
  */
-function CardContainer({ albums, filters }) {
+function CardContainer({
+  albums,
+  filters,
+  addCoverCallback,
+  removeAlbumCallback,
+}) {
   const processedAlbums = filterAlbums(albumSort(albums), filters);
-
   return (
     <div className="container">
       <FlexContainer flexDirection="column" gap="12px">
-        {processedAlbums.map((album) => <Card album={album} key={album.uuid} />)}
+        {processedAlbums.map((album) => (
+          <Card
+            album={album}
+            key={album.uuid}
+            addCoverCallback={addCoverCallback}
+            removeCallback={removeAlbumCallback}
+          />
+        ))}
       </FlexContainer>
     </div>
   );

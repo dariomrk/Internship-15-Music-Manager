@@ -5,7 +5,7 @@ import {
   getFilterByGenre,
   getFilterByName,
 } from './album';
-import { albums } from './sample';
+import { albums } from './sampleAlbums';
 
 test('filtering by name', () => {
   const result = filterAlbums(albums, [getFilterByName('the')]);

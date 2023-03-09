@@ -8,7 +8,7 @@ import './CardContainer.scoped.css';
  * @param {{
  * albums: Array<Album>,
  * filters: Array<Function>,
- * addCoverCallback: (e: Event, files: Array<File>, album: Album) => void,
+ * addCoverCallback: (files: Array<File>, album: Album) => void,
  * removeAlbumCallback: (album: Album) => void}} props
  * @returns {JSX.Element} Card container component
  */

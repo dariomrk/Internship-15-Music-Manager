@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import CardContainer from './components/cardContainer/CardContainer';
 import { removeAlbum, setLocalAlbums, getLocalAlbums } from './lib/album';
 import encode from './lib/encodeBase64';
-import { albums as seed } from './lib/sampleAlbums';
+import { albums as seed } from './data/seed';
 
 function App() {
-  const [albums, setAlbums] = useState(getLocalAlbums());
+  const [albums, setAlbums] = useState(seed);
+  // const [albums, setAlbums] = useState(getLocalAlbums());
 
   // #region event handlers
-  const addCoverHandler = async (e, files, album) => {
+  const addCoverHandler = async (files, album) => {
     if (files.length < 1) { return; }
 
     const albumWithCover = {

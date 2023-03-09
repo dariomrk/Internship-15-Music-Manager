@@ -1,4 +1,4 @@
-import { Album } from './album';
+import { Album } from '../lib/album';
 
 // eslint-disable-next-line import/prefer-default-export
 export const albums = [

@@ -5,7 +5,7 @@ import {
   getFilterByGenre,
   getFilterByName,
 } from './album';
-import { albums } from './sampleAlbums';
+import { albums } from '../data/seed';
 
 test('filtering by name', () => {
   const result = filterAlbums(albums, [getFilterByName('the')]);

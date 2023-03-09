@@ -20,9 +20,9 @@ function FileInput({ text, accept, callback }) {
         name={`file-input__${uuid}`}
         id={uuid}
         accept={accept}
-        onChange={(e) => {
+        onChange={() => {
           const { files } = document.getElementById(uuid);
-          callback(e, files);
+          callback(files);
         }}
       />
     </label>

@@ -8,7 +8,7 @@ import FileInput from '../fileInput/FileInput';
 /**
  * @param {{
  * album: Album,
- * addCoverCallback: (e: Event, files: Array<File>, album: Album) => void),
+ * addCoverCallback: (files: Array<File>, album: Album) => void),
  * removeCallback: (album: Album) => void}} props
  * @returns {JSX.Element} Card component
  */
@@ -29,7 +29,7 @@ function Card({ album, addCoverCallback, removeCallback }) {
         <FlexContainer flexDirection="column" alignItems="end" gap="4px">
           <FileInput
             text="Add cover"
-            callback={(e, files) => { addCoverCallback(e, files, album); }}
+            callback={(files) => { addCoverCallback(files, album); }}
           />
           <Button text="Remove" type="danger" callback={() => { removeCallback(album); }} />
         </FlexContainer>

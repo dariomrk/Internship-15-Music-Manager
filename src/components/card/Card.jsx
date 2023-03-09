@@ -24,7 +24,10 @@ function Card({ album }) {
       </div>
       <div className="buttons">
         <FlexContainer flexDirection="column" alignItems="end" gap="4px">
-          <FileInput text="Add cover" callback={() => {}} />
+          <FileInput
+            text="Add cover"
+            callback={(e, files) => {}}
+          />
           <Button text="Remove" type="danger" callback={() => {}} />
         </FlexContainer>
       </div>

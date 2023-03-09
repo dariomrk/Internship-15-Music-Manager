@@ -15,7 +15,16 @@ function FileInput({ text, accept, callback }) {
       }}
     >
       {text}
-      <input type="file" name={`file-input__${uuid}`} id={uuid} accept={accept} onChange={(e) => callback(e)} />
+      <input
+        type="file"
+        name={`file-input__${uuid}`}
+        id={uuid}
+        accept={accept}
+        onChange={(e) => {
+          const { files } = document.getElementById(uuid);
+          callback(e, files);
+        }}
+      />
     </label>
   );
 }

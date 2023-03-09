@@ -1,5 +1,6 @@
 import React from 'react';
 import './Card.scoped.css';
+import { DateTime } from 'luxon';
 import FlexContainer from '../flexContainer/FlexContainer';
 import Chip from '../chip/Chip';
 import Button from '../button/Button';
@@ -13,8 +14,10 @@ import FileInput from '../fileInput/FileInput';
  * @returns {JSX.Element} Card component
  */
 function Card({ album, addCoverCallback, removeCallback }) {
+  const isAddedToday = DateTime.fromISO(album.addedAt).hasSame(DateTime.utc(), 'day');
+
   return (
-    <div className="card">
+    <div className="card" style={{ border: (isAddedToday ? '8px solid var(--accent)' : '') }}>
       <div className="album-cover-wrapper" style={{ backgroundImage: (!album.cover ? '' : `url(${album.cover})`) }}>
         <h2 className="year-of-release">{album.yearOfRelease}</h2>
       </div>

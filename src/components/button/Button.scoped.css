@@ -9,6 +9,7 @@ button {
   filter: grayscale(0.1);
   color: white;
   background-color: var(--accent);
+  text-align: center;
 }
 
 button:hover {

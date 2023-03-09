@@ -1,5 +1,4 @@
 import React from 'react';
-import './FlexContainer.scoped.css';
 
 /**
  * @param {{children: Array<JSX.Element>,
@@ -20,6 +19,7 @@ function FlexContainer({
 }) {
   return (
     <div style={{
+      display: 'flex',
       flexDirection,
       justifyContent,
       alignItems,

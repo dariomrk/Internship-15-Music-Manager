@@ -12,16 +12,18 @@ import Button from '../button/Button';
 function Card({ album }) {
   return (
     <div className="card">
-      <AlbumCoverPlaceholder />
-      <div className="card__content">
+      <div className="album-cover-wrapper">
         <h2 className="year-of-release">{album.yearOfRelease}</h2>
+        {/* <AlbumCoverPlaceholder /> */}
+      </div>
+      <div className="card__content">
         <h2 className="author">{album.author}</h2>
         <h1 className="album-name">{album.name}</h1>
-        <FlexContainer>
-          {album.genres.map((genre) => <Chip text={genre} />)}
+        <FlexContainer gap="4px" flexWrap="wrap">
+          {album.genres.map((genre) => <Chip text={genre} key={`${album.uuid}__${genre}`} />)}
         </FlexContainer>
       </div>
-      <div className="remove">
+      <div className="buttons">
         <Button text="Remove" type="danger" callback={() => {}} />
       </div>
     </div>

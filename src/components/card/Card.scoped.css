@@ -1,6 +1,6 @@
 .card {
   width: 100%;
-  max-width: 1024px;
+  min-width: 624px;
   height: fit-content;
   display: flex;
   flex-direction: row;
@@ -9,11 +9,22 @@
   transition: all 200ms ease;
   background-color: whitesmoke;
   box-shadow: var(--box-shadow-2);
-  overflow: auto;
+  overflow: hidden;
 }
 
 .card:hover {
   box-shadow: var(--box-shadow-4);
+}
+
+.album-cover-wrapper {
+  background-image: url('../../assets/album-cover-placeholder.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 256px;
+  min-height: 256px;
+  flex-shrink: 0;
+  align-self: stretch;
 }
 
 svg {
@@ -33,6 +44,9 @@ svg {
 .year-of-release {
   font-size: 18px;
   margin-bottom: 8px;
+  padding: 8px;
+  color: white;
+  mix-blend-mode: difference;
 }
 
 .author {
@@ -45,7 +59,7 @@ svg {
   margin-bottom: 24px;
 }
 
-.remove {
+.buttons {
   align-self: flex-end;
   margin: 12px;
 }

@@ -7,6 +7,7 @@ function SelectGenres({
   genres,
   onChange,
   isMulti,
+  isClearable,
 }) {
   return (
     <Select
@@ -16,6 +17,7 @@ function SelectGenres({
       placeholder={isMulti ? 'Select genres' : 'Select a genre'}
       options={genres.map((genre) => ({ value: genre, label: genre }))}
       isMulti={isMulti}
+      isClearable={isClearable}
       styles={{
         control: (baseStyles, { isFocused }) => ({
           ...baseStyles,

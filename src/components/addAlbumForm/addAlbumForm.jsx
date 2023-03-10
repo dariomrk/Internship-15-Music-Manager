@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import './addAlbumForm.scoped.css';
 import { DateTime } from 'luxon';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import data from '../../data/genres.json';
 import FlexContainer from '../flexContainer/FlexContainer';
 import Button from '../button/Button';
@@ -44,10 +46,38 @@ function AddAlbumForm({ addAlbumCallback }) {
                     callback={async (files) => {
                       if (files.length < 1) { return; }
                       setCover(await encode(files[0]));
+                      toast.info('Added album cover', {
+                        position: 'top-right',
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: 'light',
+                      });
                     }}
                   />
                 )
-                : <Button text="Remove cover" type="danger" callback={() => setCover(undefined)} />}
+                : (
+                  <Button
+                    text="Remove cover"
+                    type="danger"
+                    callback={() => {
+                      setCover(undefined);
+                      toast.error('Removed album cover', {
+                        position: 'top-right',
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: 'light',
+                      });
+                    }}
+                  />
+                )}
               <Button
                 text="Add album"
                 type="success"
@@ -61,10 +91,30 @@ function AddAlbumForm({ addAlbumCallback }) {
                   };
 
                   if (!validateAlbumData(albumData)) {
+                    toast.error('Album data is invalid', {
+                      position: 'top-right',
+                      autoClose: 3000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: 'light',
+                    });
                     return;
                   }
 
                   addAlbumCallback(new Album(albumData));
+                  toast.success('Successfully added new album', {
+                    position: 'top-right',
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                  });
                 }}
               />
             </FlexContainer>

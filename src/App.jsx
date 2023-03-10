@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import CardContainer from './components/cardContainer/CardContainer';
 import {
   removeAlbum,
@@ -22,11 +23,46 @@ function App() {
       ...album,
       cover: await encode(files[0]),
     };
+    toast.info('Added album cover', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
 
     setAlbums((currentAlbums) => [...removeAlbum(album.uuid, currentAlbums), albumWithCover]);
   };
 
+  const removeCoverHandler = (album) => {
+    const albumWithoutCover = { ...album, cover: undefined };
+    toast.error('Removed album cover', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+    setAlbums((currentAlbums) => [...removeAlbum(album.uuid, currentAlbums), albumWithoutCover]);
+  };
+
   const removeAlbumHandler = (album) => {
+    toast.error('Removed album', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
     setAlbums((currentAlbums) => removeAlbum(album.uuid, currentAlbums));
   };
   // #endregion
@@ -47,7 +83,21 @@ function App() {
       <CardContainer
         albums={filterAlbums(albums, filters)}
         addCoverCallback={addCoverHandler}
+        removeCoverCallback={removeCoverHandler}
         removeAlbumCallback={removeAlbumHandler}
+      />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        toastStyle={{ borderRadius: 0 }}
       />
     </>
   );

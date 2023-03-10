@@ -9,6 +9,7 @@ import './CardContainer.scoped.css';
  * albums: Array<Album>,
  * filters: Array<Function>,
  * addCoverCallback: (files: Array<File>, album: Album) => void,
+ * removeCoverCallback: (album: Album) => void,
  * removeAlbumCallback: (album: Album) => void}} props
  * @returns {JSX.Element} Card container component
  */
@@ -16,6 +17,7 @@ function CardContainer({
   albums,
   filters,
   addCoverCallback,
+  removeCoverCallback,
   removeAlbumCallback,
 }) {
   const processedAlbums = filterAlbums(albumSort(albums), filters);
@@ -27,6 +29,7 @@ function CardContainer({
             album={album}
             key={album.uuid}
             addCoverCallback={addCoverCallback}
+            removeCoverCallback={removeCoverCallback}
             removeCallback={removeAlbumCallback}
           />
         ))}

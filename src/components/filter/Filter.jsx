@@ -14,10 +14,18 @@ function Filter({ onChange }) {
   const [filterGenre, setFilterGenre] = useState('');
 
   useEffect(() => {
-    onChange([
-      getFilterByName(filterName),
-      getFilterByGenre(filterGenre),
-    ]);
+    console.log(filterGenre);
+
+    if (!filterGenre) {
+      onChange([
+        getFilterByName(filterName),
+      ]);
+    } else {
+      onChange([
+        getFilterByName(filterName),
+        getFilterByGenre(filterGenre.value),
+      ]);
+    }
   }, [filterName, filterGenre]);
 
   return (
@@ -26,7 +34,7 @@ function Filter({ onChange }) {
         <label htmlFor="filter-name">
           <input type="text" name="filter-name" id="filter-name" placeholder="Filter by name" onChange={(e) => setFilterName(e.target.value)} />
         </label>
-        <SelectGenres id="filter-genres" genres={data.genres} onChange={(item) => setFilterGenre(item.value ?? '')} />
+        <SelectGenres id="filter-genres" genres={data.genres} onChange={(item) => setFilterGenre(item)} isClearable="true" />
       </FlexContainer>
     </form>
   );

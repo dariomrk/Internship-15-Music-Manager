@@ -9,11 +9,17 @@ import FileInput from '../fileInput/FileInput';
 /**
  * @param {{
  * album: Album,
- * addCoverCallback: (files: Array<File>, album: Album) => void),
+ * addCoverCallback: (files: Array<File>, album: Album) => void,
+ * removeCoverCallback: (album: Album) => void,
  * removeCallback: (album: Album) => void}} props
  * @returns {JSX.Element} Card component
  */
-function Card({ album, addCoverCallback, removeCallback }) {
+function Card({
+  album,
+  addCoverCallback,
+  removeCoverCallback,
+  removeCallback,
+}) {
   const isAddedToday = DateTime.fromISO(album.addedAt).hasSame(DateTime.utc(), 'day');
 
   return (
@@ -30,10 +36,14 @@ function Card({ album, addCoverCallback, removeCallback }) {
       </div>
       <div className="buttons">
         <FlexContainer flexDirection="column" alignItems="end" gap="4px">
-          <FileInput
-            text="Add cover"
-            callback={(files) => { addCoverCallback(files, album); }}
-          />
+          {!album.cover
+            ? (
+              <FileInput
+                text="Add cover"
+                callback={(files) => { addCoverCallback(files, album); }}
+              />
+            )
+            : <Button text="Remove cover" type="danger" callback={() => removeCoverCallback(album)} />}
           <Button text="Remove" type="danger" callback={() => { removeCallback(album); }} />
         </FlexContainer>
       </div>

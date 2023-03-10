@@ -31,6 +31,7 @@ button:active {
 .menu-item {
   background-color: transparent;
   box-shadow: none;
+  color: black;
 }
 
 .menu-item:hover {

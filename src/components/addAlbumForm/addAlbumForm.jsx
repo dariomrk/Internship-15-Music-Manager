@@ -17,7 +17,29 @@ function AddAlbumForm() {
           <label htmlFor="author">
             <input type="text" id="author" name="author" placeholder="Author" />
           </label>
-          <Select options={data.genres.map((genre) => ({ value: genre, label: genre }))} isMulti="true" />
+          <Select
+            placeholder="Select genres"
+            options={data.genres.map((genre) => ({ value: genre, label: genre }))}
+            isMulti="true"
+            styles={{
+              control: (baseStyles, { isFocused }) => ({
+                ...baseStyles,
+                border: !isFocused ? 'none' : '2px solid var(--accent)',
+                borderRadius: 0,
+                outline: 'none',
+              }),
+              menu: (baseStyles) => ({
+                ...baseStyles,
+                borderRadius: 'none',
+              }),
+              clearIndicator: (baseStyles) => ({
+                ...baseStyles,
+                ':hover': {
+                  color: '#ff212d',
+                },
+              }),
+            }}
+          />
           <label htmlFor="release-year">
             <input type="number" id="release-year" name="release-year" placeholder="Year" defaultValue={DateTime.utc().year} />
           </label>

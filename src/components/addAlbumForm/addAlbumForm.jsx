@@ -19,20 +19,20 @@ function AddAlbumForm({ addAlbumCallback }) {
 
   return (
     <form
-      action="addNewAlbum"
+      action="add-new-album"
       id="new-album"
     >
       <div className="form__content">
         <FlexContainer flexDirection="column" gap="8px">
-          <label htmlFor="name">
-            <input type="text" id="name" name="name" placeholder="Album" />
+          <label htmlFor="add-new-name">
+            <input type="text" id="add-new-name" name="add-new-name" placeholder="Album" />
           </label>
-          <label htmlFor="author">
-            <input type="text" id="author" name="author" placeholder="Author" />
+          <label htmlFor="add-new-author">
+            <input type="text" id="add-new-author" name="add-new-author" placeholder="Author" />
           </label>
-          <SelectGenres selectedGenres={selectedGenres} genres={data.genres} />
-          <label htmlFor="release-year">
-            <input type="number" id="release-year" name="release-year" placeholder="Year" defaultValue={DateTime.utc().year} />
+          <SelectGenres id="add-new-genres" selectedGenres={selectedGenres} genres={data.genres} isMulti="true" />
+          <label htmlFor="add-new-release-year">
+            <input type="number" id="add-new-release-year" name="add-new-release-year" placeholder="Year" defaultValue={DateTime.utc().year} />
           </label>
           <p>{!cover ? 'No cover image' : 'Cover image added'}</p>
           <div className="form__buttons">
@@ -53,10 +53,10 @@ function AddAlbumForm({ addAlbumCallback }) {
                 type="success"
                 callback={() => {
                   const albumData = {
-                    name: document.getElementById('name').value,
-                    author: document.getElementById('author').value,
+                    name: document.getElementById('add-new-name').value,
+                    author: document.getElementById('add-new-author').value,
                     genres: selectedGenres.current.getValue().map((item) => item.value),
-                    yearOfRelease: document.getElementById('release-year').value,
+                    yearOfRelease: document.getElementById('add-new-release-year').value,
                     cover,
                   };
 

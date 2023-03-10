@@ -1,20 +1,30 @@
 import React from 'react';
 import Select from 'react-select';
 
-function SelectGenres({ selectedGenres, genres }) {
+function SelectGenres({
+  id,
+  selectedGenres,
+  genres,
+  onChange,
+  isMulti,
+}) {
   return (
     <Select
+      onChange={onChange}
       ref={selectedGenres}
-      id="genres"
-      placeholder="Select genres"
+      id={id}
+      placeholder={isMulti ? 'Select genres' : 'Select a genre'}
       options={genres.map((genre) => ({ value: genre, label: genre }))}
-      isMulti="true"
+      isMulti={isMulti}
       styles={{
         control: (baseStyles, { isFocused }) => ({
           ...baseStyles,
-          border: !isFocused ? 'none' : '2px solid var(--accent)',
           borderRadius: 0,
           outline: 'none',
+          maxWidth: '512px',
+          width: '512px',
+          boxSizing: 'border-box',
+          border: (!isFocused ? 'none' : '1px solid var(--accent)'),
         }),
         menu: (baseStyles) => ({
           ...baseStyles,
@@ -25,6 +35,14 @@ function SelectGenres({ selectedGenres, genres }) {
           ':hover': {
             color: '#ff212d',
           },
+        }),
+        multiValue: (baseStyles) => ({
+          ...baseStyles,
+          borderRadius: '0',
+        }),
+        multiValueRemove: (baseStyles) => ({
+          ...baseStyles,
+          borderRadius: '0',
         }),
       }}
     />

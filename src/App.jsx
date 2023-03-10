@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import CardContainer from './components/cardContainer/CardContainer';
-import { removeAlbum, setLocalAlbums, getLocalAlbums } from './lib/album';
+import {
+  removeAlbum,
+  setLocalAlbums,
+  filterAlbums,
+} from './lib/album';
 import encode from './lib/encodeBase64';
 import Navigation from './components/navigation/Navigation';
+import { albums as seedAlbums } from './data/seed';
 
 function App() {
-  // const [albums, setAlbums] = useState(seed);
-  const [albums, setAlbums] = useState(getLocalAlbums());
+  // const [albums, setAlbums] = useState(getLocalAlbums());
+  const [albums, setAlbums] = useState(seedAlbums);
+  const [filters, setFilters] = useState([]);
 
   // #region event handlers
   const addCoverHandler = async (files, album) => {
@@ -34,9 +40,12 @@ function App() {
       <Navigation
         addNewCallback={(album) => setAlbums((prev) => [...prev, album])}
         removeAllCallback={() => { setAlbums([]); }}
+        applyFilters={(newFilters) => {
+          setFilters(newFilters);
+        }}
       />
       <CardContainer
-        albums={albums}
+        albums={filterAlbums(albums, filters)}
         addCoverCallback={addCoverHandler}
         removeAlbumCallback={removeAlbumHandler}
       />

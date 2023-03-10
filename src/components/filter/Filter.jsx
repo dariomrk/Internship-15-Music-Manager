@@ -34,7 +34,7 @@ function Filter({ onChange }) {
         <label htmlFor="filter-name">
           <input type="text" name="filter-name" id="filter-name" placeholder="Filter by name" onChange={(e) => setFilterName(e.target.value)} />
         </label>
-        <SelectGenres id="filter-genres" genres={data.genres} onChange={(item) => setFilterGenre(item)} isClearable="true" />
+        <SelectGenres id="filter-genres" genres={data.genres} onChange={(item) => setFilterGenre(item)} />
       </FlexContainer>
     </form>
   );

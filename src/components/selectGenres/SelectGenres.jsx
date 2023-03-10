@@ -2,6 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 
 function SelectGenres({
+  value,
   id,
   selectedGenres,
   genres,
@@ -11,13 +12,14 @@ function SelectGenres({
 }) {
   return (
     <Select
+      value={value}
       onChange={onChange}
       ref={selectedGenres}
       id={id}
       placeholder={isMulti ? 'Select genres' : 'Select a genre'}
       options={genres.map((genre) => ({ value: genre, label: genre }))}
       isMulti={isMulti}
-      isClearable={isClearable}
+      isClearable="true"
       styles={{
         control: (baseStyles, { isFocused }) => ({
           ...baseStyles,

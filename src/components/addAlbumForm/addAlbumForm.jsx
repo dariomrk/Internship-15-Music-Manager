@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import './addAlbumForm.scoped.css';
 import { DateTime } from 'luxon';
 import { ToastContainer, toast } from 'react-toastify';
@@ -16,7 +16,7 @@ import SelectGenres from '../selectGenres/SelectGenres';
  * @returns {JSX.Element} AddAlbumForm
  */
 function AddAlbumForm({ addAlbumCallback }) {
-  const selectedGenres = useRef();
+  const [selectedGenres, setSelectedGenres] = useState([]);
   const [cover, setCover] = useState(undefined);
 
   return (
@@ -32,7 +32,7 @@ function AddAlbumForm({ addAlbumCallback }) {
           <label htmlFor="add-new-author">
             <input type="text" id="add-new-author" name="add-new-author" placeholder="Author" />
           </label>
-          <SelectGenres id="add-new-genres" selectedGenres={selectedGenres} genres={data.genres} isMulti="true" />
+          <SelectGenres id="add-new-genres" value={selectedGenres} onChange={setSelectedGenres} genres={data.genres} isMulti="true" />
           <label htmlFor="add-new-release-year">
             <input type="number" id="add-new-release-year" name="add-new-release-year" placeholder="Year" defaultValue={DateTime.utc().year} />
           </label>
@@ -82,11 +82,17 @@ function AddAlbumForm({ addAlbumCallback }) {
                 text="Add album"
                 type="success"
                 callback={() => {
+                  const nameInput = document.getElementById('add-new-name');
+                  const authorInput = document.getElementById('add-new-author');
+                  const releaseYearInput = document.getElementById('add-new-release-year');
+
+                  console.log(selectedGenres);
+
                   const albumData = {
-                    name: document.getElementById('add-new-name').value,
-                    author: document.getElementById('add-new-author').value,
-                    genres: selectedGenres.current.getValue().map((item) => item.value),
-                    yearOfRelease: document.getElementById('add-new-release-year').value,
+                    name: nameInput.value,
+                    author: authorInput.value,
+                    genres: selectedGenres.map((item) => item.value),
+                    yearOfRelease: releaseYearInput.value,
                     cover,
                   };
 
@@ -115,6 +121,11 @@ function AddAlbumForm({ addAlbumCallback }) {
                     progress: undefined,
                     theme: 'light',
                   });
+
+                  nameInput.value = '';
+                  authorInput.value = '';
+                  setSelectedGenres([]);
+                  releaseYearInput.value = DateTime.utc().year;
                 }}
               />
             </FlexContainer>

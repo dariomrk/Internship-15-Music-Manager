@@ -89,3 +89,16 @@ export const getLocalAlbums = () => {
   if (!data) { return []; }
   return data;
 };
+
+/**
+ * Validates album data.
+ * @param {Album} album album to validate
+ * @returns {boolean}
+ */
+export const validateAlbumData = (album) => {
+  if (album.name.trim() === '') { return false; }
+  if (album.author.trim() === '') { return false; }
+  if (album.genres.length < 1) return false;
+  if (album.yearOfRelease > DateTime.utc().year) { return false; }
+  return true;
+};

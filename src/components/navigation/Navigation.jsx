@@ -29,7 +29,7 @@ function Navigation({ addNewCallback, removeAllCallback, resetFiltersCallback })
               <Button text="Reset filters" type="menu-item" callback={resetFiltersCallback} />
               <Menu isShown={addAlbumShown}>
                 <Button text="Close" type="danger" callback={() => setAddAlbumShown(false)} />
-                <AddAlbumForm callback={addNewCallback} />
+                <AddAlbumForm addAlbumCallback={addNewCallback} />
               </Menu>
             </FlexContainer>
           </Menu>

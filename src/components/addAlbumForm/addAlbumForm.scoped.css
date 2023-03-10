@@ -27,6 +27,6 @@ input:focus {
   outline: 2px solid var(--accent)
 }
 
-.form__submit {
+.form__buttons {
   align-self: end;
 }

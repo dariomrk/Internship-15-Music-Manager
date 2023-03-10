@@ -14,8 +14,6 @@ function Filter({ onChange }) {
   const [filterGenre, setFilterGenre] = useState('');
 
   useEffect(() => {
-    console.log(filterGenre);
-
     if (!filterGenre) {
       onChange([
         getFilterByName(filterName),

@@ -69,8 +69,6 @@ function AddAlbumForm({ addAlbumCallback }) {
                   const authorInput = document.getElementById('add-new-author');
                   const releaseYearInput = document.getElementById('add-new-release-year');
 
-                  console.log(selectedGenres);
-
                   const albumData = {
                     name: nameInput.value,
                     author: authorInput.value,

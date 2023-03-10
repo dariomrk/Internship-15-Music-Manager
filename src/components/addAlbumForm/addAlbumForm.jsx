@@ -10,6 +10,7 @@ import FileInput from '../fileInput/FileInput';
 import encode from '../../lib/encodeBase64';
 import { Album, validateAlbumData } from '../../lib/album';
 import SelectGenres from '../selectGenres/SelectGenres';
+import { errorConfig, successConfig, infoConfig } from '../../constants/toast';
 
 /**
  * @param {{addAlbumCallback: (album: Album) => void}} props
@@ -46,16 +47,7 @@ function AddAlbumForm({ addAlbumCallback }) {
                     callback={async (files) => {
                       if (files.length < 1) { return; }
                       setCover(await encode(files[0]));
-                      toast.info('Added album cover', {
-                        position: 'top-right',
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: 'light',
-                      });
+                      toast.info('Added album cover', infoConfig);
                     }}
                   />
                 )
@@ -65,16 +57,7 @@ function AddAlbumForm({ addAlbumCallback }) {
                     type="danger"
                     callback={() => {
                       setCover(undefined);
-                      toast.error('Removed album cover', {
-                        position: 'top-right',
-                        autoClose: 3000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: 'light',
-                      });
+                      toast.error('Removed album cover', errorConfig);
                     }}
                   />
                 )}
@@ -97,30 +80,12 @@ function AddAlbumForm({ addAlbumCallback }) {
                   };
 
                   if (!validateAlbumData(albumData)) {
-                    toast.error('Album data is invalid', {
-                      position: 'top-right',
-                      autoClose: 3000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                      theme: 'light',
-                    });
+                    toast.error('Album data is invalid', errorConfig);
                     return;
                   }
 
                   addAlbumCallback(new Album(albumData));
-                  toast.success('Successfully added new album', {
-                    position: 'top-right',
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: 'light',
-                  });
+                  toast.success('Successfully added new album', successConfig);
 
                   nameInput.value = '';
                   authorInput.value = '';

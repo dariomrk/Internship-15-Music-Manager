@@ -9,6 +9,7 @@ import {
 } from './lib/album';
 import encode from './lib/encodeBase64';
 import Navigation from './components/navigation/Navigation';
+import { errorConfig, infoConfig } from './constants/toast';
 // import { albums as seedAlbums } from './data/seed';
 
 function App() {
@@ -24,60 +25,24 @@ function App() {
       ...album,
       cover: await encode(files[0]),
     };
-    toast.info('Added album cover', {
-      position: 'top-right',
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
+    toast.info('Added album cover', infoConfig);
 
     setAlbums((currentAlbums) => [...removeAlbum(album.uuid, currentAlbums), albumWithCover]);
   };
 
   const removeCoverHandler = (album) => {
     const albumWithoutCover = { ...album, cover: undefined };
-    toast.error('Removed album cover', {
-      position: 'top-right',
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
+    toast.error('Removed album cover', errorConfig);
     setAlbums((currentAlbums) => [...removeAlbum(album.uuid, currentAlbums), albumWithoutCover]);
   };
 
   const removeAlbumHandler = (album) => {
-    toast.error('Removed album', {
-      position: 'top-right',
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
+    toast.error('Removed album', errorConfig);
     setAlbums((currentAlbums) => removeAlbum(album.uuid, currentAlbums));
   };
 
   const removeAllHandler = () => {
-    toast.error('Removed all albums', {
-      position: 'top-right',
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'light',
-    });
+    toast.error('Removed all albums', errorConfig);
     setAlbums([]);
   };
   // #endregion

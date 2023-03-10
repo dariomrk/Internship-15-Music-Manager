@@ -9,11 +9,14 @@ import Filter from '../filter/Filter';
 /**
  * @param {{
  * addNewCallback: (album: Album) => void,
+ * addSeedData: () => void,
  * removeAllCallback: () => void,
  * applyFilters: (filters: (album: Album) => boolean)}} props
  * @returns {JSX.Element} Navigation component
  */
-function Navigation({ addNewCallback, removeAllCallback, applyFilters }) {
+function Navigation({
+  addNewCallback, addSeedData, removeAllCallback, applyFilters,
+}) {
   const [menuShown, setMenuShown] = useState(false);
   const [addAlbumShown, setAddAlbumShown] = useState(false);
 
@@ -29,6 +32,7 @@ function Navigation({ addNewCallback, removeAllCallback, applyFilters }) {
             <Button text="Close" type="danger" callback={() => setMenuShown(false)} />
             <FlexContainer flexDirection="column" alignItems="center" justifyContent="center" width="100%" height="100%">
               <Button text="Add new" type="menu-item" callback={() => { setAddAlbumShown(true); }} />
+              <Button text="Add seed data" type="menu-item" callback={addSeedData} />
               <Button text="Remove all" type="menu-item" callback={removeAllCallback} />
               <Menu isShown={addAlbumShown}>
                 <Button text="Close" type="danger" callback={() => setAddAlbumShown(false)} />

@@ -10,11 +10,10 @@ import {
 import encode from './lib/encodeBase64';
 import Navigation from './components/navigation/Navigation';
 import { errorConfig, infoConfig } from './constants/toast';
-// import { albums as seedAlbums } from './data/seed';
+import { albums as seedAlbums } from './data/seed';
 
 function App() {
   const [albums, setAlbums] = useState(getLocalAlbums());
-  // const [albums, setAlbums] = useState(seedAlbums);
   const [filters, setFilters] = useState([]);
 
   // #region event handlers
@@ -41,6 +40,11 @@ function App() {
     setAlbums((currentAlbums) => removeAlbum(album.uuid, currentAlbums));
   };
 
+  const addSeedHandler = () => {
+    toast.info('Added seed data', infoConfig);
+    setAlbums((currentAlbums) => [...currentAlbums, ...seedAlbums]);
+  };
+
   const removeAllHandler = () => {
     toast.error('Removed all albums', errorConfig);
     setAlbums([]);
@@ -55,6 +59,7 @@ function App() {
     <>
       <Navigation
         addNewCallback={(album) => setAlbums((prev) => [...prev, album])}
+        addSeedData={addSeedHandler}
         removeAllCallback={removeAllHandler}
         applyFilters={(newFilters) => {
           setFilters(newFilters);

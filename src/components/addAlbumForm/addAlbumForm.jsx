@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import './addAlbumForm.scoped.css';
-import Select from 'react-select';
 import { DateTime } from 'luxon';
 import data from '../../data/genres.json';
 import FlexContainer from '../flexContainer/FlexContainer';
@@ -8,6 +7,7 @@ import Button from '../button/Button';
 import FileInput from '../fileInput/FileInput';
 import encode from '../../lib/encodeBase64';
 import { Album, validateAlbumData } from '../../lib/album';
+import SelectGenres from '../selectGenres/SelectGenres';
 
 /**
  * @param {{addAlbumCallback: (album: Album) => void}} props
@@ -30,31 +30,7 @@ function AddAlbumForm({ addAlbumCallback }) {
           <label htmlFor="author">
             <input type="text" id="author" name="author" placeholder="Author" />
           </label>
-          <Select
-            ref={selectedGenres}
-            id="genres"
-            placeholder="Select genres"
-            options={data.genres.map((genre) => ({ value: genre, label: genre }))}
-            isMulti="true"
-            styles={{
-              control: (baseStyles, { isFocused }) => ({
-                ...baseStyles,
-                border: !isFocused ? 'none' : '2px solid var(--accent)',
-                borderRadius: 0,
-                outline: 'none',
-              }),
-              menu: (baseStyles) => ({
-                ...baseStyles,
-                borderRadius: 'none',
-              }),
-              clearIndicator: (baseStyles) => ({
-                ...baseStyles,
-                ':hover': {
-                  color: '#ff212d',
-                },
-              }),
-            }}
-          />
+          <SelectGenres selectedGenres={selectedGenres} genres={data.genres} />
           <label htmlFor="release-year">
             <input type="number" id="release-year" name="release-year" placeholder="Year" defaultValue={DateTime.utc().year} />
           </label>
@@ -80,7 +56,7 @@ function AddAlbumForm({ addAlbumCallback }) {
                     name: document.getElementById('name').value,
                     author: document.getElementById('author').value,
                     genres: selectedGenres.current.getValue().map((item) => item.value),
-                    releaseYear: document.getElementById('release-year').value,
+                    yearOfRelease: document.getElementById('release-year').value,
                     cover,
                   };
 

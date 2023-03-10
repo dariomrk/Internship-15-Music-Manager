@@ -22,7 +22,7 @@ function Navigation({ addNewCallback, removeAllCallback, applyFilters }) {
       <nav>
         <div className="nav__content">
           <FlexContainer>
-            <Button text="Options" callback={() => setMenuShown(true)} />
+            <Button text="Main menu" callback={() => setMenuShown(true)} />
             <Filter onChange={applyFilters} />
           </FlexContainer>
           <Menu isShown={menuShown}>

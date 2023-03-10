@@ -5,14 +5,15 @@ import {
   removeAlbum,
   setLocalAlbums,
   filterAlbums,
+  getLocalAlbums,
 } from './lib/album';
 import encode from './lib/encodeBase64';
 import Navigation from './components/navigation/Navigation';
-import { albums as seedAlbums } from './data/seed';
+// import { albums as seedAlbums } from './data/seed';
 
 function App() {
-  // const [albums, setAlbums] = useState(getLocalAlbums());
-  const [albums, setAlbums] = useState(seedAlbums);
+  const [albums, setAlbums] = useState(getLocalAlbums());
+  // const [albums, setAlbums] = useState(seedAlbums);
   const [filters, setFilters] = useState([]);
 
   // #region event handlers
@@ -65,6 +66,20 @@ function App() {
     });
     setAlbums((currentAlbums) => removeAlbum(album.uuid, currentAlbums));
   };
+
+  const removeAllHandler = () => {
+    toast.error('Removed all albums', {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'light',
+    });
+    setAlbums([]);
+  };
   // #endregion
 
   useEffect(() => {
@@ -75,7 +90,7 @@ function App() {
     <>
       <Navigation
         addNewCallback={(album) => setAlbums((prev) => [...prev, album])}
-        removeAllCallback={() => { setAlbums([]); }}
+        removeAllCallback={removeAllHandler}
         applyFilters={(newFilters) => {
           setFilters(newFilters);
         }}

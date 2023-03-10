@@ -1,0 +1,19 @@
+nav {
+  position: fixed;
+  background-color: whitesmoke;
+  width: 100vw;
+  box-shadow: var(--box-shadow-2);
+  padding: 8px;
+  z-index: 1;
+}
+
+.nav__content {
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.separator {
+  height: 46px;
+}

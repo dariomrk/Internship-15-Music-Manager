@@ -27,3 +27,12 @@ button:active {
 .success {
   background-color: var(--accent-success);
 }
+
+.menu-item {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.menu-item:hover {
+  color: var(--accent);
+}

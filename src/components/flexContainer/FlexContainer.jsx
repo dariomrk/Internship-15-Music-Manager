@@ -6,7 +6,9 @@ import React from 'react';
  * justifyContent: undefined | string,
  * alignItems: undefined | string,
  * flexWrap: undefined | string,
- * gap: undefined | string}} props
+ * gap: undefined | string,
+ * width: undefined | string,
+ * height: undefined | string}} props
  * @returns {JSX.Element}
  */
 function FlexContainer({
@@ -16,6 +18,8 @@ function FlexContainer({
   alignItems,
   flexWrap,
   gap,
+  width,
+  height,
 }) {
   return (
     <div style={{
@@ -25,6 +29,8 @@ function FlexContainer({
       alignItems,
       flexWrap,
       gap,
+      width,
+      height,
     }}
     >
       {children}

@@ -10,7 +10,7 @@ import './Button.scoped.css';
  */
 function Button({ text, type, callback }) {
   return (
-    <button className={type} type="button" onClick={(e) => callback(e)}>
+    <button className={`button ${type}`} type="button" onClick={(e) => callback(e)}>
       {text}
     </button>
   );

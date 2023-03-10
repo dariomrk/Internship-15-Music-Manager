@@ -8,6 +8,7 @@ function FileInput({ text, accept, callback }) {
   const uuid = v4();
   return (
     <label
+      className="button"
       htmlFor={`file-input__${uuid}`}
       onClick={(e) => {
         e.stopPropagation();

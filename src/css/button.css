@@ -1,0 +1,25 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  min-width: 72px;
+  min-height: 38px;
+  border: 0;
+  padding: 8px;
+  font-weight: 600;
+  transition: all 200ms ease;
+  box-shadow: var(--box-shadow-2);
+  filter: grayscale(0.1);
+  color: white;
+  background-color: var(--accent);
+  cursor: pointer;
+}
+
+.button:hover {
+  filter: grayscale(0) saturate(1.2);
+}
+
+.button:active {
+  box-shadow: none;
+}

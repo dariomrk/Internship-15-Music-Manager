@@ -10,4 +10,5 @@ export default defineConfig({
     reactScopedCssPlugin(),
     svgr(),
   ],
+  base: '/Internship-15-Music-Manager/',
 });

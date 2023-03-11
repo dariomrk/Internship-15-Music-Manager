@@ -3,7 +3,8 @@ name: Deploy
 on:
   push:
     branches:
-      - main
+      - master
+      - chore/add-deploy-action
 
 jobs:
   build:

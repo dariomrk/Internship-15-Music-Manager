@@ -1,4 +1,6 @@
 # Internship-15-Music-Manager
+[![Deploy](https://github.com/dariomrk/Internship-15-Music-Manager/actions/workflows/deploy.yml/badge.svg)](https://github.com/dariomrk/Internship-15-Music-Manager/actions/workflows/deploy.yml)
+
 Music (album) manager web app, built using React.
 
 ## Requirements
